@@ -1,57 +1,76 @@
 ﻿using System;
 
-
-    class Program
+class Program
+{
+    static void Main(string[] args)
     {
+        int check = 0;
+        int sum = 0;
+        Console.WriteLine("Enter equation in the format 'a sign b' (e.g. 2 + 3)");
+        string equation = Console.ReadLine();
+        string[] parts = equation.Split(" ");
+        int a = Convert.ToInt32(parts[0]);
+        string sign = parts[1];
+        int b = Convert.ToInt32(parts[2]);
 
-        
-
-        static void Main(string[] args)
+        if (sign == "+")
         {
-        double check = 0;
-        double sum;
-        Console.WriteLine("Enter equation in the format: num1 operator num2 (example: 1 + 1)");
-        string input = Console.ReadLine();
-        string[] inputs = input.Split(" ");
-        double num1 = Convert.ToDouble(inputs[0]);
-        string op = inputs[1];
-        double num2 = Convert.ToDouble(inputs[2]);
-
-
-        switch (op)
-        {
-            case "+":
-                sum = num1 + num2;
-                Console.WriteLine("The result is " + sum);
-                break;
-
-            case "-":
-                sum = num1 - num2;
-                Console.WriteLine("The result is " + sum);
-                break;
-
-            case "*":
-                sum = num1 * num2;
-                Console.WriteLine("The result is " + sum);
-                break;
-
-            case "/":
-                if (num2 == 0)
-                {
-                    Console.WriteLine("Cannot divide by zero.");
-                }
-                else
-                {
-                    sum = num1 / num2;
-                    Console.WriteLine("The result is " + sum);
-                }
-                break;
-
-            default:
-                Console.WriteLine("Invalid operator.");
-                break;
+            sum = a + b;
+            Console.WriteLine("Now Enter the asnwer");
+            while (check != sum)
+            {
+                check = Convert.ToInt32(Console.ReadLine());
+                if (check == sum) { break; }
+                else { Console.WriteLine($"{check} is not right,try again"); }
+            }
+            Console.WriteLine($"{check} is right,you did it");
         }
-    }
-}
-    
 
+        if (sign == "-")
+        {
+            sum = a - b;
+            if (a - b < 0) { Console.WriteLine("Now Enter the asnwer and dont forget the minus"); }
+            else { Console.WriteLine("Now Enter the asnwer"); }
+            while (check != sum)
+            {
+                check = Convert.ToInt32(Console.ReadLine());
+                if (check == sum) { break; }
+                else { Console.WriteLine($"{check} is not right,try again"); }
+            }
+            Console.WriteLine($"{check} is right,you did it");
+        }
+
+        if (sign == "*")
+        {
+            sum = a * b;
+            Console.WriteLine("Now Enter the asnwer");
+            while (check != sum)
+            {
+                check = Convert.ToInt32(Console.ReadLine());
+                if (check == sum) { break; }
+                else { Console.WriteLine($"{check} is not right,try again"); }
+            }
+            Console.WriteLine($"{check} is right,you did it");
+        }
+
+        if (sign == "/")
+        {
+            try { sum = a / b; }
+
+            catch (DivideByZeroException) {
+                Console.WriteLine("can not divide by zero,restart program");
+                Environment.Exit(0);
+            }
+
+            Console.WriteLine("Now Enter the asnwer");
+            while (check != sum) {
+                check = Convert.ToInt32(Console.ReadLine());
+                if (check == sum) { break; }
+                else { Console.WriteLine($"{check} is not right,try again"); }
+            }
+            Console.WriteLine($"{check} is right,you did it");
+        }
+
+    }
+
+}  
